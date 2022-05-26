@@ -1,0 +1,80 @@
+{% extends 'store/main.html'%}
+{% load static %}
+
+{% block content%}
+  
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="box-element" id="form-wrapper">
+        <form action="" id="form">
+          <div class="user-info">
+
+            <div class="form-field">
+              <input type="text" name="name" class="form-control" placeholder="Name..." required>
+            </div>
+
+            <div class="form-field">
+              <input type="email" name="email" class="form-control" placeholder="Email..." required>
+            </div>
+          </div>
+
+          <div id="shipping-info">
+            <hr>
+            <p>Shipping Information:</p>
+            <hr>
+
+            <div class="form-field">
+              <input type="text" name="address" class="form-control" placeholder="Address..." required>
+            </div>
+
+            <div class="form-field">
+              <input type="text" name="city" class="form-control" placeholder="City..." required>
+            </div>
+
+            <div class="form-field">
+              <input type="text" name="state" class="form-control" placeholder="State..." required>
+            </div>
+
+            <div class="form-field">
+              <input type="text" name="zip" class="form-control" placeholder="Zip Code..." required>
+            </div>
+          </div>
+
+          <hr>
+          <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+        </form>
+      </div>
+
+      <br>
+    <div class="box-element hidden" id="payment-info">
+      <small>Paypal options</small>
+
+    </div><br>
+    <div class="box-element" id="payment-info">
+      <small>Paypal options</small>
+
+    </div>
+    </div>
+    
+
+    <div class="col-lg-6">
+      <div class="box-element">
+        <a class="btn btn-outline-dark" href="{% url 'store:cart'%}"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to cart</a>
+      <hr>
+        <h3>Order Summary</h3>
+      <hr>
+
+        <div class="cart-row">
+          <div style="flex:2;"> <img class="row-image" src="{% static 'images/stud.jpeg'%}" alt="placeholder"></div>
+          <div style="flex:2;">Product 1</div>
+          <div style="flex:1;">&dollar;20</div>
+          <div style="flex:1;"><p class="quantity">2</p></div>
+        </div>
+
+        <h5>Items: 2</h5>
+        <h5>Total: &dollar;40</h5>
+      </div>
+    </div>
+
+  </div>
+{% endblock content%}
