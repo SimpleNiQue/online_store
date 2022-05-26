@@ -1,0 +1,1 @@
+## My Demo Online Store Built with django 
