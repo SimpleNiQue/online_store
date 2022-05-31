@@ -1,9 +1,5 @@
 {% extends 'store/main.html'%}
 {% load static %}
-<i class="fas fa-caret-down"></i>
-
-<i class="fas fa-caret-up"></i>
-
 
 
 {% block content%}
@@ -16,8 +12,8 @@
 
         <table class="table">
           <tr>
-            <th><h5>Items: <strong>3</strong></h5></th>
-            <th><h5>Total: <strong>&dollar;43</strong></h5></th>
+            <th><h5>Items: <strong>{{ order.get_cart_items}}</strong></h5></th>
+            <th><h5>Total: <strong>&dollar;{{ order.get_cart_total|floatformat:2 }}</strong></h5></th>
             <th><a style="float: right; margin:5px" class="btn btn-success" href="{% url 'store:checkout'%}">Checkout</a></th>
           </tr>
         </table>
@@ -33,19 +29,22 @@
           <div style="flex:1;"><strong>Total</strong></div>
         </div>
         
-        <div class="cart-row">
-          <div style="flex:2;"> <img class="row-image" src="{% static 'images/stud.jpeg'%}" alt="placeholder"></div>
-          <div style="flex:2;">Product 1</div>
-          <div style="flex:1;">&dollar;20</div>
-          <div style="flex:1;">
-            <p class="quantity">2</p>
-            <div class="quantity">
-              <i class="fas fa-caret-up chg-quantity"></i>
-              <i class="fas fa-caret-down chg-quantity"></i>
+
+        {% for item in items %}
+          <div class="cart-row">
+            <div style="flex:2;"> <img class="row-image" src="{{ item.product.imageURL }}" alt="placeholder"></div>
+            <div style="flex:2;">{{ item.product.name|title }}</div>
+            <div style="flex:1;">&dollar;{{ item.product.price|floatformat:2 }}</div>
+            <div style="flex:1;">
+              <p class="quantity">{{ item.quantity}}</p>
+              <div class="quantity">
+                <i class="fas fa-caret-up chg-quantity"></i>
+                <i class="fas fa-caret-down chg-quantity"></i>
+              </div>
             </div>
+            <div style="flex:1;">&dollar;{{ item.get_total }}</div>
           </div>
-          <div style="flex:1;">&dollar;40</div>
-        </div>
+        {% endfor %}
 
       </div>
       <br>
