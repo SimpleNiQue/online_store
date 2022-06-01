@@ -10,6 +10,28 @@
   <link href="{% static 'css/font_awesome/all.css'%}" rel="stylesheet">
   <link href="{% static 'css/cart-font.css'%}" rel="stylesheet">
   <link href="{% static 'css/main.css'%}" rel="stylesheet">
+
+  <script type="text/javascript">
+    var user = '{{ request.user}}'
+
+    function getCookie(name) {
+      var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');   
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+    }
+    
+    var csrftoken = getCookie('csrftoken');
+  </script>
   
 </head>
 <body>
@@ -33,10 +55,10 @@
       </a>
     </li>
       <li class="nav-item " style="list-style: none;">
-        <a href="#" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+        <a href="{% url 'store:cart'%}" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
           <i class="fas fa fa-shopping-cart fa-lg"></i>
           <span class="cart-basket d-flex align-items-center justify-content-center">
-            0
+            {{ cartItems}}
           </span>
         </a>
           </li>
